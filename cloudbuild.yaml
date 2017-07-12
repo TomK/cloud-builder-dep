@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # Cloud Build for Go dep image
-# gcloud container builds submit --config=cloudbuild.yaml --substitutions=_DEP_COMMIT=master .
+# gcloud container builds submit --config=cloudbuild.yaml .
 
 steps:
 
@@ -21,7 +21,7 @@ steps:
 - name: 'gcr.io/cloud-builders/git'
   args: ['clone', '-n', 'https://github.com/golang/dep.git', 'src/github.com/golang/dep']
 - name: 'gcr.io/cloud-builders/git'
-  args: ['checkout', '$_DEP_COMMIT']
+  args: ['checkout', 'master']
   dir: 'src/github.com/golang/dep'
 
 # Build into image
@@ -31,7 +31,6 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build',
     '-t', 'gcr.io/$PROJECT_ID/dep:$BUILD_ID',
-    '--label', 'DEP_COMMIT=$_DEP_COMMIT',
     '-f', 'Dockerfile',
     '.']
 
