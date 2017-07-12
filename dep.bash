@@ -13,9 +13,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-if [ -z "$GOPATH" ]; then
-  echo "dep: GOPATH must be set" 1>&2
-  exit 1
-fi
-export GOPATH="$(readlink -f "$GOPATH")"
+# create gopath and symlink project into it
+
+CWD="$(pwd)"
+export GOPATH="$CWD/gopath"
+SHADOW_WORKSPACE="$GOPATH/src/$PROJECT_ROOT"
+LINK_DIR="$(dirname "$SHADOW_WORKSPACE")"
+mkdir -p "$LINK_DIR" || return
+
+ln -s "$CWD" "$SHADOW_WORKSPACE" -T 2> /dev/null || stat "$SHADOW_WORKSPACE" 2> /dev/null || return
+
+cd "$SHADOW_WORKSPACE"
 /go/bin/dep "$@"
