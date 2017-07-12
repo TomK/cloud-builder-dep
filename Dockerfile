@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git-core \
     mercurial \
     subversion \
+    ca-certificates \
   && rm -rf /var/lib/apt/lists/*
 
 COPY bin/dep /go/bin/dep
