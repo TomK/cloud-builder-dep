@@ -31,6 +31,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build',
     '-t', 'gcr.io/$PROJECT_ID/dep:$TAG_NAME',
+    '-t', 'gcr.io/$PROJECT_ID/dep:latest',
     '-f', 'Dockerfile',
     '.']
 
