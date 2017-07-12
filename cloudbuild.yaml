@@ -30,9 +30,9 @@ steps:
   env: ['GOPATH=.']
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build',
-    '-t', 'gcr.io/$PROJECT_ID/dep:$BUILD_ID',
+    '-t', 'gcr.io/$PROJECT_ID/dep:$TAG_NAME',
     '-f', 'Dockerfile',
     '.']
 
 images:
-- 'gcr.io/$PROJECT_ID/dep:$BUILD_ID'
+- 'gcr.io/$PROJECT_ID/dep:$TAG_NAME'
