@@ -37,3 +37,4 @@ steps:
 
 images:
 - 'gcr.io/$PROJECT_ID/dep:$TAG_NAME'
+- 'gcr.io/$PROJECT_ID/dep:latest'
