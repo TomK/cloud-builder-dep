@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM golang:1.8
+FROM gcr.io/cloud-builders/go:wheezy
 RUN apt-get update && apt-get install -y --no-install-recommends \
     git-core \
     mercurial \
@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
   && rm -rf /var/lib/apt/lists/*
 
-RUN ["go","get","-u","github.com/golang/dep/cmd/dep"]
+RUN GOPATH=/go && go get -u github.com/golang/dep/cmd/dep
 
 COPY dep.bash /bin/dep.bash
 ENTRYPOINT ["/bin/dep.bash"]
