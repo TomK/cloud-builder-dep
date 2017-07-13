@@ -15,13 +15,12 @@
 
 # create gopath and symlink project into it
 
-CWD="$(pwd)"
-export GOPATH="$CWD/gopath"
+export GOPATH="/go"
 SHADOW_WORKSPACE="$GOPATH/src/$PROJECT_ROOT"
 LINK_DIR="$(dirname "$SHADOW_WORKSPACE")"
 mkdir -p "$LINK_DIR" || exit 1
 
-ln -s "$CWD" "$SHADOW_WORKSPACE" -T 2> /dev/null || stat "$SHADOW_WORKSPACE" 2> /dev/null || exit 1
+ln -s "/workspace" "$SHADOW_WORKSPACE" -T 2> /dev/null || stat "$SHADOW_WORKSPACE" 2> /dev/null || exit 1
 
 cd "$SHADOW_WORKSPACE"
 /go/bin/dep "$@"

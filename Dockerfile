@@ -14,9 +14,6 @@
 
 FROM gcr.io/cloud-builders/go:wheezy
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    git-core \
-    mercurial \
-    subversion \
     ca-certificates \
   && rm -rf /var/lib/apt/lists/*
 
