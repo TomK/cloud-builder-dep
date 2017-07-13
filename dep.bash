@@ -21,7 +21,7 @@ SHADOW_WORKSPACE="$GOPATH/src/$PROJECT_ROOT"
 LINK_DIR="$(dirname "$SHADOW_WORKSPACE")"
 mkdir -p "$LINK_DIR" || return
 
-ln -s "$CWD" "$SHADOW_WORKSPACE" -T 2> /dev/null || stat "$SHADOW_WORKSPACE" 2> /dev/null || return
+ln -s "$CWD" "$SHADOW_WORKSPACE" -T 2> /dev/null || stat "$SHADOW_WORKSPACE" 2> /dev/null || exit 1
 
 cd "$SHADOW_WORKSPACE"
 /go/bin/dep "$@"
